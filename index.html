@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SwiftBuy – Fast & Secure Shopping</title>
+  <!-- Google Fonts & simple reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fafafc;
+      color: #1a1e2b;
+      line-height: 1.4;
+    }
+
+    /* container */
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header & navigation */
+    .top-bar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #eef2f6;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(2px);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 18px 0;
+      gap: 20px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .logo-icon {
+      font-size: 28px;
+      color: #2563eb;
+    }
+
+    .brand {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .swift {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #2c3e50;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    .cart-icon {
+      position: relative;
+      font-size: 22px;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -12px;
+      background: #e11d48;
+      color: white;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 30px;
+    }
+
+    .btn-outline {
+      border: 1px solid #cbd5e1;
+      padding: 8px 18px;
+      border-radius: 40px;
+      background: white;
+      transition: 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+
+    /* hero */
+    .hero {
+      padding: 64px 0 48px;
+      background: linear-gradient(120deg, #f8fafc, #ffffff);
+    }
+
+    .hero-grid {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+      justify-content: space-between;
+    }
+
+    .hero-text {
+      flex: 1;
+      min-width: 260px;
+    }
+
+    .hero-text h1 {
+      font-size: 3.1rem;
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #0f2b3d, #1e40af);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 20px;
+    }
+
+    .hero-text p {
+      font-size: 1.2rem;
+      color: #334155;
+      margin-bottom: 32px;
+      max-width: 90%;
+    }
+
+    .btn-primary {
+      background: #2563eb;
+      color: white;
+      border: none;
+      padding: 14px 32px;
+      border-radius: 48px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: 0.2s;
+      box-shadow: 0 8px 14px -6px rgba(37, 99, 235, 0.3);
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .btn-primary:hover {
+      background: #1d4ed8;
+      transform: translateY(-2px);
+    }
+
+    .hero-image {
+      flex: 1;
+      min-width: 280px;
+      text-align: center;
+    }
+
+    .hero-image img {
+      max-width: 100%;
+      border-radius: 32px;
+      box-shadow: 0 25px 40px -12px rgba(0,0,0,0.15);
+      object-fit: cover;
+      width: 100%;
+      height: auto;
+    }
+
+    /* category strip */
+    .categories {
+      padding: 40px 0 24px;
+    }
+
+    .section-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      margin-bottom: 28px;
+      letter-spacing: -0.3px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .category-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: center;
+    }
+
+    .category-card {
+      background: white;
+      border-radius: 60px;
+      padding: 12px 28px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      font-weight: 600;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.03);
+      border: 1px solid #e9edf2;
+      transition: all 0.2s;
+      cursor: pointer;
+    }
+
+    .category-card i {
+      font-size: 24px;
+      color: #2563eb;
+    }
+
+    .category-card:hover {
+      border-color: #2563eb;
+      transform: translateY(-3px);
+      background: #fefefe;
+    }
+
+    /* featured products */
+    .featured {
+      padding: 40px 0 60px;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+      gap: 30px;
+    }
+
+    .product-card {
+      background: white;
+      border-radius: 28px;
+      overflow: hidden;
+      transition: all 0.25s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02), 0 2px 6px rgba(0,0,0,0.05);
+      border: 1px solid #edf2f7;
+    }
+
+    .product-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.12);
+    }
+
+    .product-img {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      background: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      object-fit: cover;
+    }
+
+    .product-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.2s;
+    }
+
+    .product-info {
+      padding: 18px 16px 20px;
+    }
+
+    .product-title {
+      font-weight: 700;
+      font-size: 1.1rem;
+      margin-bottom: 8px;
+    }
+
+    .price {
+      font-weight: 800;
+      color: #1e293b;
+      font-size: 1.3rem;
+      margin: 8px 0;
+    }
+
+    .old-price {
+      text-decoration: line-through;
+      font-size: 0.85rem;
+      color: #94a3b8;
+      margin-left: 8px;
+      font-weight: normal;
+    }
+
+    .rating {
+      color: #f59e0b;
+      font-size: 0.85rem;
+      margin: 6px 0;
+    }
+
+    .add-to-cart {
+      width: 100%;
+      margin-top: 12px;
+      background: #f1f5f9;
+      border: none;
+      padding: 10px;
+      border-radius: 40px;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      cursor: pointer;
+      transition: 0.2s;
+      color: #0f172a;
+    }
+
+    .add-to-cart:hover {
+      background: #2563eb;
+      color: white;
+    }
+
+    /* newsletter */
+    .newsletter {
+      background: #0f172a;
+      border-radius: 48px;
+      margin: 60px 0 50px;
+      padding: 56px 40px;
+      text-align: center;
+      color: white;
+    }
+
+    .newsletter h3 {
+      font-size: 1.9rem;
+      margin-bottom: 12px;
+    }
+
+    .newsletter p {
+      margin-bottom: 28px;
+      opacity: 0.8;
+    }
+
+    .news-form {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 12px;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+
+    .news-form input {
+      flex: 2;
+      padding: 14px 20px;
+      border-radius: 60px;
+      border: none;
+      outline: none;
+      font-size: 1rem;
+    }
+
+    .news-form button {
+      background: #2563eb;
+      border: none;
+      padding: 14px 28px;
+      border-radius: 60px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+    }
+
+    /* footer */
+    footer {
+      border-top: 1px solid #e2e8f0;
+      padding: 40px 0 30px;
+      background: white;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-col h4 {
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+    }
+
+    .footer-col p, .footer-col a {
+      color: #475569;
+      text-decoration: none;
+      display: block;
+      margin: 8px 0;
+    }
+
+    .social-icons i {
+      font-size: 22px;
+      margin-right: 16px;
+      color: #334155;
+      transition: 0.2s;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 40px;
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 700px) {
+      .hero-text h1 {
+        font-size: 2.2rem;
+      }
+      .navbar {
+        flex-direction: column;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+      .hero-grid {
+        flex-direction: column;
+      }
+      .section-title {
+        font-size: 1.5rem;
+      }
+    }
+  </style>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-NTV0NLN2X5"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+function gtag(){dataLayer.push(arguments);}
+gtag('js', new Date());
+
+gtag('config', 'G-NTV0NLN2X5');
+</script>
+
+
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="container">
+    <div class="navbar">
+      <div class="logo-area">
+        <i class="fas fa-bolt logo-icon"></i>
+        <span class="brand">Swift<span class="swift">Buy</span></span>
+      </div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="about.html">About Us</a>
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count" id="cartCountIndicator">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<main>
+  <!-- Hero section with working product image (unsplash high-quality placeholder + relevant alt) -->
+  <section class="hero">
+    <div class="container hero-grid">
+      <div class="hero-text">
+        <h1>Shop smarter.<br>Get it faster with <span style="color:#2563eb;">SwiftBuy</span></h1>
+        <p>Unbeatable deals, next‑gen electronics, trendy fashion, and home essentials — all in one place. Free shipping on orders over $49.</p>
+        <button class="btn-primary" id="exploreBtn">Explore now <i class="fas fa-arrow-right"></i></button>
+      </div>
+      <div class="hero-image">
+        <!-- High-quality, working image from reliable CDN (demo ecom hero) -->
+        <img src="https://picsum.photos/id/20/600/500" alt="SwiftBuy hero shopping collage" style="border-radius: 28px; object-fit: cover;">
+        <!-- alternative: working unsplash style but picsum guarantees image; shows modern lifestyle -->
+      </div>
+    </div>
+  </section>
+
+  <!-- category chips -->
+  <div class="container categories">
+    <div class="section-title">
+      <i class="fas fa-th-large"></i> <span>Shop by category</span>
+    </div>
+    <div class="category-grid">
+      <div class="category-card"><i class="fas fa-mobile-alt"></i> Electronics</div>
+      <div class="category-card"><i class="fas fa-tshirt"></i> Fashion</div>
+      <div class="category-card"><i class="fas fa-couch"></i> Home & Living</div>
+      <div class="category-card"><i class="fas fa-shoe-prints"></i> Footwear</div>
+      <div class="category-card"><i class="fas fa-headphones"></i> Audio</div>
+      <div class="category-card"><i class="fas fa-dumbbell"></i> Sports</div>
+    </div>
+  </div>
+
+  <!-- Featured products section (all images properly working) -->
+  <div class="container featured">
+    <div class="section-title">
+      <i class="fas fa-fire"></i> <span>🔥 Flash picks</span>
+    </div>
+    <div class="product-grid" id="productGrid">
+      <!-- Products will be inserted via JS with valid images -->
+    </div>
+  </div>
+
+  <!-- Newsletter -->
+  <div class="container">
+    <div class="newsletter">
+      <h3>⚡ Speed up your inbox</h3>
+      <p>Get early access to exclusive SwiftBuy deals & 10% off your first order.</p>
+      <div class="news-form">
+        <input type="email" placeholder="Your email address" id="newsEmail">
+        <button id="newsBtn">Subscribe →</button>
+      </div>
+      <small style="opacity:0.7; display:block; margin-top:16px;">No spam, only lightning deals.</small>
+    </div>
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4><i class="fas fa-bolt"></i> SwiftBuy</h4>
+        <p>Lightning fast delivery & premium quality.</p>
+        <div class="social-icons">
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-tiktok"></i>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Help Center</a>
+        <a href="#">Returns & Warranty</a>
+        <a href="#">Order Tracking</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About SwiftBuy</a>
+        <a href="#">Careers</a>
+        <a href="#">Sustainability</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="#">Terms of use</a>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 SwiftBuy — eCommerce reinvented. All images are demo/working placeholders.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // ---------- PRODUCT DATA WITH FULLY WORKING IMAGES (valid URLs from picsum & placeholder images that always load) ----------
+  const products = [
+    {
+      id: 1,
+      name: "SwiftPro X1 Headphones",
+      price: 89.99,
+      oldPrice: 149.99,
+      rating: 4.8,
+      image: "https://picsum.photos/id/1/400/400",   // laptop/tech vibe
+      alt: "Noise cancelling headphones"
+    },
+    {
+      id: 2,
+      name: "AeroSmart Watch Ultra",
+      price: 199.00,
+      oldPrice: 299.00,
+      rating: 4.9,
+      image: "https://picsum.photos/id/0/400/400",
+      alt: "Smartwatch with sport band"
+    },
+    {
+      id: 3,
+      name: "UrbanFit Hoodie",
+      price: 49.99,
+      oldPrice: 79.99,
+      rating: 4.7,
+      image: "https://picsum.photos/id/20/400/400",
+      alt: "Cozy cotton hoodie"
+    },
+    {
+      id: 4,
+      name: "SwiftCharge Power Bank",
+      price: 34.95,
+      oldPrice: 59.95,
+      rating: 4.6,
+      image: "https://picsum.photos/id/26/400/400",
+      alt: "20000mAh fast charging"
+    },
+    {
+      id: 5,
+      name: "Minimalist Backpack",
+      price: 59.00,
+      oldPrice: 89.00,
+      rating: 4.8,
+      image: "https://picsum.photos/id/128/400/400",
+      alt: "Water resistant travel backpack"
+    },
+    {
+      id: 6,
+      name: "UltraDesk LED Lamp",
+      price: 39.99,
+      oldPrice: 69.99,
+      rating: 4.5,
+      image: "https://picsum.photos/id/169/400/400",
+      alt: "Adjustable desk lamp with wireless charging"
+    }
+  ];
+
+  let cartItemsCount = 0;
+
+  // update cart UI
+  function updateCartUI() {
+    const counterSpan = document.getElementById('cartCountIndicator');
+    if(counterSpan) counterSpan.innerText = cartItemsCount;
+  }
+
+  // add to cart handler (simple demo)
+  function addToCart(productId, productName) {
+    cartItemsCount++;
+    updateCartUI();
+    // optional subtle alert/toast
+    const toastMsg = document.createElement('div');
+    toastMsg.innerText = `✨ ${productName} added to cart!`;
+    toastMsg.style.position = 'fixed';
+    toastMsg.style.bottom = '20px';
+    toastMsg.style.right = '20px';
+    toastMsg.style.background = '#1e293b';
+    toastMsg.style.color = '#fff';
+    toastMsg.style.padding = '12px 24px';
+    toastMsg.style.borderRadius = '40px';
+    toastMsg.style.zIndex = '999';
+    toastMsg.style.fontWeight = '500';
+    toastMsg.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+    document.body.appendChild(toastMsg);
+    setTimeout(() => toastMsg.remove(), 2000);
+  }
+
+  // render product grid with working images
+  function renderProducts() {
+    const gridContainer = document.getElementById('productGrid');
+    if(!gridContainer) return;
+    gridContainer.innerHTML = '';
+    products.forEach(prod => {
+      const card = document.createElement('div');
+      card.className = 'product-card';
+      // star rating display
+      const fullStars = Math.floor(prod.rating);
+      const halfStar = (prod.rating % 1) >= 0.5 ? true : false;
+      let starsHtml = '';
+      for(let i=0; i<fullStars; i++) starsHtml += '<i class="fas fa-star"></i>';
+      if(halfStar) starsHtml += '<i class="fas fa-star-half-alt"></i>';
+      const emptyStars = 5 - fullStars - (halfStar ? 1 : 0);
+      for(let i=0; i<emptyStars; i++) starsHtml += '<i class="far fa-star"></i>';
+      
+      card.innerHTML = `
+        <div class="product-img">
+          <img src="${prod.image}" alt="${prod.alt}" loading="lazy" onerror="this.src='https://picsum.photos/id/23/400/400'">
+        </div>
+        <div class="product-info">
+          <div class="product-title">${prod.name}</div>
+          <div class="rating">${starsHtml} <span style="color:#475569; font-size:0.75rem;">(${prod.rating})</span></div>
+          <div class="price">$${prod.price.toFixed(2)} <span class="old-price">$${prod.oldPrice.toFixed(2)}</span></div>
+          <button class="add-to-cart" data-id="${prod.id}" data-name="${prod.name}">
+            <i class="fas fa-shopping-cart"></i> Add to cart
+          </button>
+        </div>
+      `;
+      gridContainer.appendChild(card);
+    });
+
+    // attach event listeners to each Add to cart button
+    const allAddButtons = document.querySelectorAll('.add-to-cart');
+    allAddButtons.forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const productId = parseInt(btn.getAttribute('data-id'));
+        const productName = btn.getAttribute('data-name');
+        addToCart(productId, productName);
+      });
+    });
+  }
+
+  // additional interactive: newsletter demo
+  function initNewsletter() {
+    const newsBtn = document.getElementById('newsBtn');
+    const emailInput = document.getElementById('newsEmail');
+    if(newsBtn) {
+      newsBtn.addEventListener('click', () => {
+        const email = emailInput.value.trim();
+        if(email && email.includes('@') && email.includes('.')) {
+          alert(`🎉 Thanks for subscribing! A 10% off code has been sent to ${email}`);
+          emailInput.value = '';
+        } else {
+          alert('Please enter a valid email address to get SwiftBuy deals.');
+        }
+      });
+    }
+  }
+
+  // explore button redirects (smooth scroll to featured products)
+  function initExplore() {
+    const exploreBtn = document.getElementById('exploreBtn');
+    if(exploreBtn) {
+      exploreBtn.addEventListener('click', () => {
+        const featuredSection = document.querySelector('.featured');
+        if(featuredSection) {
+          featuredSection.scrollIntoView({ behavior: 'smooth' });
+        }
+      });
+    }
+  }
+
+  // random cart badge initial zero; also handle any category card click as simple demo alert
+  function initCategoryHoverAlerts() {
+    const categories = document.querySelectorAll('.category-card');
+    categories.forEach(cat => {
+      cat.addEventListener('click', () => {
+        const catName = cat.innerText.trim();
+        alert(`✨ Explore ${catName} — thousands of products ready to ship!`);
+      });
+    });
+  }
+
+  // ensure all images are robust: add fallback for any broken ones (already inline onerror on product images)
+  // extra hero image onerror
+  const heroImg = document.querySelector('.hero-image img');
+  if(heroImg) {
+    heroImg.addEventListener('error', () => {
+      heroImg.src = 'https://picsum.photos/id/13/600/500';
+    });
+  }
+
+  // also after dynamic products, still ensure all images but we added onerror inline
+  // additional small features: could be interactive discount etc.
+  document.addEventListener('DOMContentLoaded', () => {
+    renderProducts();
+    initNewsletter();
+    initExplore();
+    initCategoryHoverAlerts();
+    updateCartUI();
+
+    // adding hover effect support for cart icon as micro feedback
+    const cartIconDiv = document.querySelector('.cart-icon');
+    if(cartIconDiv) {
+      cartIconDiv.addEventListener('click', () => {
+        alert(`🛒 Your cart has ${cartItemsCount} item${cartItemsCount !== 1 ? 's' : ''}. Proceed to checkout?`);
+      });
+    }
+
+    // little style: product images guarantee display
+    console.log('SwiftBuy ready — all images guaranteed working!');
+  });
+</script>
+</body>
+</html>

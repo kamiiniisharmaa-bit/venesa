@@ -1,0 +1,582 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <title>SwiftBuy – Terms of Service</title>
+  <!-- Google Fonts & simple reset -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 (free icons) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fafafc;
+      color: #1a1e2b;
+      line-height: 1.5;
+    }
+
+    .container {
+      max-width: 1280px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* header & navigation (consistent with homepage) */
+    .top-bar {
+      background-color: #ffffff;
+      border-bottom: 1px solid #eef2f6;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      backdrop-filter: blur(2px);
+    }
+
+    .navbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      padding: 18px 0;
+      gap: 20px;
+    }
+
+    .logo-area {
+      display: flex;
+      align-items: baseline;
+      gap: 6px;
+    }
+
+    .logo-icon {
+      font-size: 28px;
+      color: #2563eb;
+    }
+
+    .brand {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(135deg, #1e3a8a, #2563eb);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+    }
+
+    .swift {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      align-items: center;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      font-weight: 500;
+      color: #2c3e50;
+      transition: 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: #2563eb;
+    }
+
+    .cart-icon {
+      position: relative;
+      font-size: 22px;
+    }
+
+    .cart-count {
+      position: absolute;
+      top: -8px;
+      right: -12px;
+      background: #e11d48;
+      color: white;
+      font-size: 11px;
+      font-weight: bold;
+      padding: 2px 6px;
+      border-radius: 30px;
+    }
+
+    .btn-outline {
+      border: 1px solid #cbd5e1;
+      padding: 8px 18px;
+      border-radius: 40px;
+      background: white;
+      transition: 0.2s;
+    }
+
+    .btn-outline:hover {
+      border-color: #2563eb;
+      background: #eff6ff;
+    }
+
+    /* Terms hero / page header */
+    .terms-header {
+      background: linear-gradient(105deg, #f1f5f9 0%, #ffffff 100%);
+      padding: 60px 0 40px;
+      border-bottom: 1px solid #e2e8f0;
+    }
+
+    .terms-header h1 {
+      font-size: 2.8rem;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      background: linear-gradient(to right, #0f2b3d, #1e40af);
+      background-clip: text;
+      -webkit-background-clip: text;
+      color: transparent;
+      margin-bottom: 16px;
+    }
+
+    .terms-header p {
+      font-size: 1.1rem;
+      color: #334155;
+      max-width: 720px;
+    }
+
+    .last-updated {
+      background: #eef2ff;
+      display: inline-block;
+      padding: 6px 14px;
+      border-radius: 40px;
+      font-size: 0.8rem;
+      font-weight: 500;
+      margin-top: 20px;
+      color: #1e40af;
+    }
+
+    /* main terms content */
+    .terms-content {
+      padding: 60px 0 80px;
+    }
+
+    .terms-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+    }
+
+    .sidebar-nav {
+      flex: 1;
+      min-width: 240px;
+      background: white;
+      border-radius: 28px;
+      padding: 24px 12px 24px 20px;
+      height: fit-content;
+      position: sticky;
+      top: 100px;
+      border: 1px solid #edf2f7;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.02);
+    }
+
+    .sidebar-nav h4 {
+      font-size: 1.2rem;
+      margin-bottom: 20px;
+      font-weight: 700;
+      letter-spacing: -0.2px;
+    }
+
+    .sidebar-nav ul {
+      list-style: none;
+    }
+
+    .sidebar-nav li {
+      margin-bottom: 14px;
+    }
+
+    .sidebar-nav a {
+      text-decoration: none;
+      color: #334155;
+      font-weight: 500;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: 0.2s;
+    }
+
+    .sidebar-nav a i {
+      width: 22px;
+      font-size: 0.9rem;
+      color: #2563eb;
+    }
+
+    .sidebar-nav a:hover {
+      color: #2563eb;
+      transform: translateX(4px);
+    }
+
+    .terms-docs {
+      flex: 3;
+      min-width: 280px;
+    }
+
+    .terms-card {
+      background: white;
+      border-radius: 32px;
+      padding: 32px 36px;
+      margin-bottom: 32px;
+      border: 1px solid #eef2f6;
+      box-shadow: 0 8px 20px rgba(0,0,0,0.02);
+      transition: 0.1s;
+    }
+
+    .terms-card h2 {
+      font-size: 1.7rem;
+      font-weight: 700;
+      margin-bottom: 20px;
+      color: #0f172a;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .terms-card h2 i {
+      color: #2563eb;
+      font-size: 1.6rem;
+    }
+
+    .terms-card h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin: 24px 0 12px 0;
+      color: #1e293b;
+    }
+
+    .terms-card p {
+      margin-bottom: 16px;
+      color: #2d3a4b;
+    }
+
+    .terms-card ul, .terms-card ol {
+      margin: 16px 0 20px 28px;
+      color: #2d3a4b;
+    }
+
+    .terms-card li {
+      margin-bottom: 8px;
+    }
+
+    .highlight {
+      background: #f8fafc;
+      padding: 16px 22px;
+      border-left: 4px solid #2563eb;
+      border-radius: 20px;
+      margin: 24px 0;
+      font-weight: 500;
+    }
+
+    hr {
+      margin: 32px 0;
+      border-color: #eef2f6;
+    }
+
+    /* footer same as homepage */
+    footer {
+      border-top: 1px solid #e2e8f0;
+      padding: 40px 0 30px;
+      background: white;
+    }
+
+    .footer-grid {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 40px;
+    }
+
+    .footer-col h4 {
+      margin-bottom: 16px;
+      font-size: 1.1rem;
+    }
+
+    .footer-col p, .footer-col a {
+      color: #475569;
+      text-decoration: none;
+      display: block;
+      margin: 8px 0;
+    }
+
+    .social-icons i {
+      font-size: 22px;
+      margin-right: 16px;
+      color: #334155;
+      transition: 0.2s;
+    }
+
+    .copyright {
+      text-align: center;
+      margin-top: 40px;
+      color: #64748b;
+      font-size: 0.85rem;
+    }
+
+    @media (max-width: 800px) {
+      .terms-card {
+        padding: 24px 20px;
+      }
+      .sidebar-nav {
+        position: relative;
+        top: 0;
+      }
+      .terms-header h1 {
+        font-size: 2rem;
+      }
+      .navbar {
+        flex-direction: column;
+      }
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<div class="top-bar">
+  <div class="container">
+    <div class="navbar">
+      <a href="javascript:void(0)" onclick="window.location.href='#'" style="text-decoration: none;">
+        <div class="logo-area">
+          <i class="fas fa-bolt logo-icon"></i>
+          <span class="brand">Swift<span class="swift">Buy</span></span>
+        </div>
+      </a>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy</a>
+      <a href="terms.html">Terms</a>
+      <a href="about.html">About Us</a>
+          <i class="fas fa-shopping-bag"></i>
+          <span class="cart-count" id="cartCountIndicator">0</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Terms Header -->
+<section class="terms-header">
+  <div class="container">
+    <h1><i class="fas fa-file-contract"></i> Terms of Service</h1>
+    <p>Welcome to SwiftBuy. These terms and conditions outline the rules and regulations for using our website and services. By accessing this website, we assume you accept these terms in full.</p>
+    <div class="last-updated"><i class="far fa-calendar-alt"></i> Last updated: June 12, 2026</div>
+  </div>
+</section>
+
+<!-- Main terms content with sticky sidebar -->
+<div class="container terms-content">
+  <div class="terms-grid">
+    <!-- Sidebar navigation (smooth scroll) -->
+    <div class="sidebar-nav">
+      <h4><i class="fas fa-list-ul"></i> On this page</h4>
+      <ul>
+        <li><a href="#acceptance" class="nav-link"><i class="fas fa-check-circle"></i> Acceptance</a></li>
+        <li><a href="#purchases" class="nav-link"><i class="fas fa-shopping-cart"></i> Purchases & Payments</a></li>
+        <li><a href="#shipping" class="nav-link"><i class="fas fa-truck"></i> Shipping & Delivery</a></li>
+        <li><a href="#returns" class="nav-link"><i class="fas fa-exchange-alt"></i> Returns & Refunds</a></li>
+        <li><a href="#account" class="nav-link"><i class="fas fa-user-lock"></i> Account</a></li>
+        <li><a href="#prohibited" class="nav-link"><i class="fas fa-ban"></i> Prohibited Use</a></li>
+        <li><a href="#liability" class="nav-link"><i class="fas fa-gavel"></i> Liability</a></li>
+        <li><a href="#privacy" class="nav-link"><i class="fas fa-shield-alt"></i> Privacy Policy</a></li>
+        <li><a href="#changes" class="nav-link"><i class="fas fa-sync-alt"></i> Changes</a></li>
+      </ul>
+    </div>
+
+    <div class="terms-docs">
+      <!-- Acceptance Section -->
+      <div id="acceptance" class="terms-card">
+        <h2><i class="fas fa-check-double"></i> 1. Acceptance of Terms</h2>
+        <p>By using the SwiftBuy website (“Service”), you agree to be bound by these Terms of Service, all applicable laws, and regulations. If you do not agree with any part of the terms, you may not access the platform. SwiftBuy reserves the right to update or modify these terms at any time without prior notice. Your continued use of the Service after any changes constitutes acceptance of the new Terms.</p>
+        <div class="highlight">
+          <i class="fas fa-exclamation-triangle"></i> <strong>Eligibility:</strong> You must be at least 18 years old or the age of majority in your jurisdiction to use SwiftBuy. By using this site, you represent that you meet this requirement.
+        </div>
+      </div>
+
+      <!-- Purchases & Payments -->
+      <div id="purchases" class="terms-card">
+        <h2><i class="fas fa-credit-card"></i> 2. Purchases & Payment</h2>
+        <p>All products and services displayed on SwiftBuy are subject to availability. We strive to provide accurate pricing and descriptions, but errors may occur. SwiftBuy reserves the right to cancel any orders containing incorrect information.</p>
+        <h3>Payment Methods</h3>
+        <p>We accept major credit cards (Visa, Mastercard, American Express), PayPal, Apple Pay, and SwiftBuy gift cards. By completing a purchase, you authorize SwiftBuy to charge the total amount, including taxes and shipping fees. All transactions are secured with SSL encryption.</p>
+        <ul>
+          <li>Prices are listed in USD unless otherwise specified.</li>
+          <li>Sales tax may apply based on your shipping address.</li>
+          <li>SwiftBuy may offer promotional discounts which are subject to specific terms.</li>
+        </ul>
+      </div>
+
+      <!-- Shipping & Delivery -->
+      <div id="shipping" class="terms-card">
+        <h2><i class="fas fa-shipping-fast"></i> 3. Shipping & Delivery</h2>
+        <p>SwiftBuy provides worldwide shipping with express options available. Estimated delivery times are provided at checkout but are not guaranteed. We partner with reliable couriers (FedEx, DHL, USPS). Risk of loss passes to you upon delivery.</p>
+        <ul>
+          <li>Standard shipping: 5–7 business days.</li>
+          <li>Express (SwiftBuy Priority): 2–3 business days.</li>
+          <li>International shipping: 10–14 business days, customs fees may apply.</li>
+        </ul>
+        <p>If a package is delayed or lost, please contact our support team at <strong>support@swiftbuy.com</strong>. We'll assist in filing claims.</p>
+      </div>
+
+      <!-- Returns & Refunds -->
+      <div id="returns" class="terms-card">
+        <h2><i class="fas fa-undo-alt"></i> 4. Returns & Refunds Policy</h2>
+        <p>We want you to love your purchase. Most unused items in original packaging can be returned within 30 days of delivery. Certain exclusions apply (e.g., personalized items, digital downloads).</p>
+        <h3>How to Initiate a Return</h3>
+        <ol>
+          <li>Visit your SwiftBuy order history.</li>
+          <li>Select the item and click “Request Return”.</li>
+          <li>Print the prepaid shipping label (return fees may be deducted for non-defective items).</li>
+          <li>Drop off the package at any authorized carrier location.</li>
+        </ol>
+        <p>Refunds are processed within 5–10 business days after we receive and inspect the returned product. Original shipping charges are non-refundable unless the return is due to our error.</p>
+        <div class="highlight">
+          🚀 <strong>SwiftBuy Guarantee:</strong> If you received a damaged or defective item, we offer a full refund or free replacement within 14 days. Contact our 24/7 support immediately.
+        </div>
+      </div>
+
+      <!-- Account -->
+      <div id="account" class="terms-card">
+        <h2><i class="fas fa-id-card"></i> 5. Account Responsibilities</h2>
+        <p>To access certain features, you may need to create a SwiftBuy account. You are responsible for maintaining the confidentiality of your login credentials and for all activities under your account. Notify us immediately if you suspect unauthorized use. SwiftBuy is not liable for any loss or damage arising from your failure to protect your account.</p>
+        <p>You agree to provide accurate, current, and complete information during registration. We may suspend or terminate accounts that violate our policies.</p>
+      </div>
+
+      <!-- Prohibited Use -->
+      <div id="prohibited" class="terms-card">
+        <h2><i class="fas fa-skull-crossbones"></i> 6. Prohibited Activities</h2>
+        <p>You may not use SwiftBuy for any unlawful purpose or to engage in activities that harm our platform, including but not limited to:</p>
+        <ul>
+          <li>Reselling products for commercial purposes without authorization.</li>
+          <li>Uploading malicious code, viruses, or attempting to hack.</li>
+          <li>Impersonating another person or entity.</li>
+          <li>Using bots or scrapers to extract pricing or product data.</li>
+          <li>Interfering with security-related features.</li>
+        </ul>
+        <p>Violation may result in immediate termination and legal action where applicable.</p>
+      </div>
+
+      <!-- Liability -->
+      <div id="liability" class="terms-card">
+        <h2><i class="fas fa-balance-scale"></i> 7. Limitation of Liability</h2>
+        <p>To the maximum extent permitted by law, SwiftBuy, its directors, employees, or partners shall not be liable for any indirect, incidental, or consequential damages arising from your use of the site or purchase of products. Our total liability shall not exceed the amount you paid for the relevant product. We do not warrant that the site will be uninterrupted or error-free.</p>
+        <p>Some jurisdictions do not allow limitations on implied warranties, so the above limitations may not apply to you. In such cases, liability is limited to the fullest extent permitted by law.</p>
+      </div>
+
+      <!-- Privacy Policy summary -->
+      <div id="privacy" class="terms-card">
+        <h2><i class="fas fa-user-secret"></i> 8. Privacy & Data Protection</h2>
+        <p>Your privacy is crucial to us. Our Privacy Policy explains how we collect, use, and share your personal information. By using SwiftBuy, you consent to the data practices described in the Privacy Policy, including the use of cookies to enhance your experience. You have the right to access, correct, or delete your personal data by contacting our Data Protection Officer at <strong>privacy@swiftbuy.com</strong>.</p>
+        <p>We do not sell your personal data to third parties. For complete details, please review the separate <a href="#" style="color:#2563eb;">Privacy Policy page</a>.</p>
+      </div>
+
+      <!-- Changes to Terms -->
+      <div id="changes" class="terms-card">
+        <h2><i class="fas fa-history"></i> 9. Changes to Terms</h2>
+        <p>SwiftBuy reserves the right to revise these Terms at any time. The revised version will be posted with an updated “Last updated” date. Your continued use of the website after changes take effect signifies your acceptance. We encourage you to check this page periodically for updates. If you do not agree with future modifications, you must stop using the Service.</p>
+        <hr>
+        <p><strong>Contact us:</strong> If you have any questions about these Terms, please reach out to our legal team:</p>
+        <p><i class="fas fa-envelope"></i> legal@swiftbuy.com <br> <i class="fas fa-phone-alt"></i> +1 (800) 555-SWIFT <br> SwiftBuy, 123 Commerce Street, Suite 400, New York, NY 10001</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4><i class="fas fa-bolt"></i> SwiftBuy</h4>
+        <p>Lightning fast delivery & premium quality.</p>
+        <div class="social-icons">
+          <i class="fab fa-instagram"></i>
+          <i class="fab fa-twitter"></i>
+          <i class="fab fa-facebook"></i>
+          <i class="fab fa-tiktok"></i>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Support</h4>
+        <a href="#">Help Center</a>
+        <a href="#">Returns & Warranty</a>
+        <a href="#">Order Tracking</a>
+      </div>
+      <div class="footer-col">
+        <h4>Company</h4>
+        <a href="#">About SwiftBuy</a>
+        <a href="#">Careers</a>
+        <a href="#">Sustainability</a>
+      </div>
+      <div class="footer-col">
+        <h4>Legal</h4>
+        <a href="#">Privacy</a>
+        <a href="javascript:void(0)" style="font-weight:600;">Terms of Service</a>
+      </div>
+    </div>
+    <div class="copyright">
+      © 2026 SwiftBuy — eCommerce reinvented. All rights reserved.
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Simple interactive features: cart count simulation (just for demo)
+  let cartCount = 0;
+  const cartIndicator = document.getElementById('cartCountIndicator');
+  function updateCartDisplay() {
+    if(cartIndicator) cartIndicator.innerText = cartCount;
+  }
+  // Optional: add to cart from anywhere? but terms page can have static cart count.
+  // For a realistic experience, we can keep it as zero but show interactive if clicked.
+  const cartIconDiv = document.querySelector('.cart-icon');
+  if(cartIconDiv) {
+    cartIconDiv.addEventListener('click', () => {
+      alert(`🛒 Your cart has ${cartCount} item(s). Continue shopping to add products.`);
+    });
+  }
+  updateCartDisplay();
+
+  // Smooth scroll for anchor links inside sidebar
+  document.querySelectorAll('.nav-link').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+      e.preventDefault();
+      const targetId = this.getAttribute('href').substring(1);
+      const targetElement = document.getElementById(targetId);
+      if(targetElement) {
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        });
+        // small highlight effect
+        targetElement.style.transition = '0.2s';
+        targetElement.style.boxShadow = '0 0 0 2px #2563eb';
+        setTimeout(() => {
+          targetElement.style.boxShadow = '';
+        }, 800);
+      }
+    });
+  });
+
+  // Optional: "Sign in" button demo
+  const signBtn = document.querySelector('.btn-outline');
+  if(signBtn) {
+    signBtn.addEventListener('click', (e) => {
+      e.preventDefault();
+      alert("🔐 SwiftBuy Account demo: sign in to access exclusive deals.");
+    });
+  }
+  // Add a friendly console note
+  console.log("SwiftBuy Terms page — fully styled, interactive sidebar navigation");
+</script>
+</body>
+</html>
